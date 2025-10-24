@@ -2,71 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KaiXin Malatang</title>
+  <title>开心麻辣烫 KaiXin Malatang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
 
     body {
       font-family: 'Noto Serif SC', serif;
-      background: radial-gradient(circle at top, #fff8e1, #fff2e5);
-      padding: 20px;
+      background: linear-gradient(to bottom right, #fff8e1, #fff0e0);
       color: #5c1a03;
+      margin: 0;
+      padding: 0;
       text-align: center;
-      position: relative;
       overflow-x: hidden;
+      position: relative;
     }
 
+    /* Decorative Lanterns */
+    .lantern {
+      position: absolute;
+      width: 70px;
+      animation: floatLantern 3s ease-in-out infinite alternate;
+      opacity: 0.9;
+    }
+
+    .lantern.left { top: 30px; left: 40px; }
+    .lantern.right { top: 30px; right: 40px; }
+
+    @keyframes floatLantern {
+      0% { transform: translateY(0) rotate(3deg); }
+      100% { transform: translateY(-15px) rotate(-3deg); }
+    }
+
+    /* Logo and Title */
     .logo {
       width: 130px;
+      margin-top: 60px;
       animation: bounce 2s infinite alternate;
-      margin: 10px auto;
     }
 
     @keyframes bounce {
       0% { transform: translateY(0); }
-      100% { transform: translateY(-8px); }
+      100% { transform: translateY(-6px); }
     }
 
     h1 {
       color: #c40000;
-      font-size: 54px;
-      text-shadow: 2px 2px #ffd700;
+      font-size: 56px;
+      text-shadow: 3px 3px #fcd116;
+      margin: 10px 0;
     }
 
     p {
-      font-size: 20px;
       color: #8b0000;
-      margin-bottom: 20px;
+      font-size: 20px;
+      margin-bottom: 25px;
       font-style: italic;
     }
 
-    .lantern {
-      position: absolute;
-      width: 60px;
-      animation: swing 2.5s infinite ease-in-out;
-    }
-
-    .lantern.left {
-      left: 20px;
-      top: 10px;
-    }
-
-    .lantern.right {
-      right: 20px;
-      top: 10px;
-    }
-
-    @keyframes swing {
-      0% { transform: rotate(3deg); }
-      50% { transform: rotate(-3deg); }
-      100% { transform: rotate(3deg); }
+    /* Social Media */
+    .social-icons {
+      margin: 15px 0;
     }
 
     .social-icons a {
-      margin: 0 12px;
-      font-size: 30px;
       color: #b40000;
-      transition: transform 0.3s ease;
+      font-size: 30px;
+      margin: 0 12px;
+      transition: all 0.3s ease;
     }
 
     .social-icons a:hover {
@@ -74,19 +77,42 @@
       transform: scale(1.3);
     }
 
+    /* Language Buttons */
+    .lang-toggle {
+      margin: 20px 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'Noto Serif SC', serif;
+      background: #fff4d4;
+      border: 1px solid #d4af37;
+      color: #8b0000;
+      padding: 6px 14px;
+      margin: 0 6px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .lang-toggle button:hover {
+      background-color: #ffd700;
+    }
+
+    /* Section Headers */
     h2 {
       color: #a52a2a;
-      margin: 30px 0 20px;
       font-size: 26px;
       border-bottom: 2px dashed #d4af37;
       display: inline-block;
-      padding-bottom: 5px;
+      margin: 35px 0 20px;
+      padding-bottom: 6px;
     }
 
+    /* Location Cards */
     .location-button {
       position: relative;
-      margin: 20px auto;
-      padding: 18px;
+      margin: 18px auto;
       width: 85%;
       max-width: 420px;
       background: linear-gradient(to right, #fff7e6, #fff0cc);
@@ -95,27 +121,26 @@
       font-size: 20px;
       font-weight: bold;
       color: #8b0000;
+      padding: 18px;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: all 0.4s ease;
+      transition: transform 0.4s ease;
     }
 
     .location-button:hover {
-      background-color: #fff3cd;
       transform: scale(1.04);
+      background-color: #fff3cd;
     }
 
-    .location-button .promo {
+    .promo {
       display: none;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
       background: #ffe8b3;
-      border-top: 1px  #d4af37;
       color: #5c1a03;
-      padding: 1px;
       font-size: 16px;
+      border-top: 1px solid #d4af37;
+      margin-top: 8px;
+      padding: 8px;
+      border-radius: 0 0 14px 14px;
       animation: fadeIn 0.5s forwards;
     }
 
@@ -123,53 +148,49 @@
       display: block;
     }
 
+    .promo a {
+      color: #8b0000;
+      text-decoration: none;
+    }
+
     @keyframes fadeIn { 
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .lang-toggle {
-      margin: 20px;
-      font-size: 18px;
-      color: #a52a2a;
+    /* About Section */
+    #about p {
+      max-width: 700px;
+      margin: 10px auto 40px;
+      line-height: 1.8;
+      color: #6e1a0c;
     }
 
-    .lang-toggle button {
-      background: #fce6b0;
-      border: 1px solid #d4af37;
-      padding: 6px 12px;
-      margin: 0 5px;
-      font-family: 'Noto Serif SC', serif;
-    }
-
-    .lang-toggle button:hover {
-      background-color: #ffd700;
-    }
-
-      footer {
-      margin-top: 60px;
+    /* Footer */
+    footer {
       background-color: #c40000;
       color: white;
       padding: 20px;
+      margin-top: 60px;
       font-size: 16px;
-      }
+      letter-spacing: 0.5px;
+      border-top: 3px solid #ffd700;
+    }
 
+    footer span {
+      color: #ffd700;
+    }
   </style>
+
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-
-  <!-- Music -->
-  <audio autoplay loop hidden>
-    <source src="https://youtu.be/CvOHMjHy7Ns?si=DFiYmRtgj6oUBCVt" type="audio/mpeg">
-    Your browser does not support the audio tag.
-  </audio>
-
-  <!-- Lantern Decorations -->
+  <!-- Decorative Lanterns -->
   <img src="kaixin.webp" class="lantern left" alt="Lantern">
   <img src="kaixin mala.jpeg" class="lantern right" alt="Lantern">
 
-  <!-- Logo and Title -->
+  <!-- Logo and Header -->
   <img src="white kaixin.png" alt="KaiXin Logo" class="logo">
   <h1 id="title">开心麻辣烫 KaiXin</h1>
   <p id="slogan">If you love her, bring her to KaiXin Malatang.</p>
@@ -181,80 +202,58 @@
     <a href="mailto:info@kaixin.com"><i class="fas fa-envelope"></i></a>
   </div>
 
-  <!-- Language Toggle -->
-   <div class="lang-toggle">
+  <!-- Language Switch -->
+  <div class="lang-toggle">
     <button onclick="switchLanguage('en')">English</button>
     <button onclick="switchLanguage('zh')">中文</button>
   </div>
 
-  <!-- Contact Header -->
-  <h2 id="contact-heading">Our Contact & Hours:</h2>
-
-  <!-- Locations -->
-  <div class="location-button">
-    KaiXin - Steung Mean Chey Market
-    <div class="promo" id="promo1">🔥 Free topping on orders over $5!</div>
-  </div>
-  <div class="location-button">
-    KaiXin - Midtown Mall
-    <div class="promo" id="promo2">🎉 Buy 2 bowls, get 1 free drink!</div>
-  </div>
-  <div class="location-button">
-    KaiXin - K Mall
-    <div class="promo" id="promo3">🥢 Student Discount: 10% off with ID!</div>
-  </div>
-  <div class="location-button">
-    KaiXin - BKK
-    <div class="promo" id="promo4">🍜 Try our new spicy tofu for only $1.50!</div>
-  </div>
-
-    <!-- ABOUT SECTION -->
-  <div id="about" class="section">
+  <!-- About Section -->
+  <section id="about">
     <h2>About KaiXin</h2>
     <p>
-      KaiXin Malatang brings the warmth of traditional Chinese street food into a modern, fun, and cozy environment.
-
-      We blend rich broth, fresh ingredients, and spicy flavors to offer you a true Sichuan-style experience.
+      KaiXin Malatang brings the warmth of traditional Chinese street food into a modern, cozy environment. 
+      We combine rich broth, fresh ingredients, and the soul of Sichuan flavor — for a spicy, joyful experience.
     </p>
-  </div>
+  </section>
 
-  <!-- CONTACT SECTION -->
-  <div id="contact" class="section">
-    <h2 id="contact-heading">Contact Us & Our Locations</h2>
+  <!-- Locations -->
+  <section id="locations">
+    <h2 id="contact-heading">Our Contact & Hours:</h2>
 
     <div class="location-button">
       KaiXin - Steung Mean Chey Market
-      <div class="promo" id="promo1"> <a href="https://maps.app.goo.gl/YuQ5fpdKLQxz6mCN6">📍 Steung Mean Chey Market</a></div>
+      <div class="promo" id="promo1">🔥 Free topping on orders over $5!</div>
     </div>
+
     <div class="location-button">
       KaiXin - Midtown Mall
-      <div class="promo" id="promo2"><a href="https://maps.app.goo.gl/YuQ5fpdKLQxz6mCN6">📍 Midtown Mall</a></div>
+      <div class="promo" id="promo2">🎉 Buy 2 bowls, get 1 free drink!</div>
     </div>
+
     <div class="location-button">
       KaiXin - K Mall
-      <div class="promo" id="promo3"><a href="https://maps.app.goo.gl/YuQ5fpdKLQxz6mCN6">📍 K Mall</a></div>
+      <div class="promo" id="promo3">🥢 Student Discount: 10% off with ID!</div>
     </div>
+
     <div class="location-button">
       KaiXin - BKK
-      <div class="promo" id="promo4"><a href="https://maps.app.goo.gl/YuQ5fpdKLQxz6mCN6">📍 BKK</a></div>
+      <div class="promo" id="promo4">🍜 Try our new spicy tofu for only $1.50!</div>
     </div>
-  </div>
+  </section>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
-    &copy; 2025 KaiXin Malatang | Designed with ❤️ for flavor & culture
+    &copy; 2025 <span>KaiXin Malatang</span> | Designed with ❤️ for flavor & culture
   </footer>
 
-
-</body>
-</html>
-
+  <!-- Language Script -->
   <script>
     function switchLanguage(lang) {
       if (lang === 'zh') {
         document.getElementById("title").innerText = "开心麻辣烫 KaiXin";
         document.getElementById("slogan").innerText = "如果你爱她，就带她来开心麻辣烫。";
-        document.getElementById("contact-heading").innerText = "联系我们和营业时间：";
+        document.getElementById("contact-heading").innerText = "联系我们与营业时间：";
         document.getElementById("promo1").innerText = "🔥 消费满$5，送一份配菜！";
         document.getElementById("promo2").innerText = "🎉 买两碗送一杯饮料！";
         document.getElementById("promo3").innerText = "🥢 学生证享受九折优惠！";
@@ -270,6 +269,5 @@
       }
     }
   </script>
-
 </body>
 </html>
